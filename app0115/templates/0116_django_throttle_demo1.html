@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        p {border: 1px green dashed; padding: 5px;} .apiv {color: red;} .sup {color: orange;}
+    </style>
+    <title>0116 django throttle demo1</title>
+</head>
+<body>
+    <h2>0116 django throttle demo1</h2>
+    <a href="#botp" id="topg">Link to page bottom</a>
+
+    <p>
+        ___#0116 django api throttle install <br>----------------------<br>
+    2 types of throttling: Authenticated & Unauthenticated users <br>
+        <br><br>
+
+    </p>
+    <hr><br>
+    <p>
+        ___#0116 <b><i>views.py</i></b> <br>----------------add the method throttle_check <br> <br>
+        <sup class="sup">
+            from rest_framework.throttling import AnonRateThrottle <br>
+            from rest_framework.decorators import throttle_classes, api_view, permission_classes <br>
+        </sup>
+        <br><br>
+
+        | <a href="apiv" class="apiv">@api_view()</a> <br>
+        | <a href="apiv" class="apiv">@throttle_classes</a>([AnonRateThrottle]) <br>
+        | <a href="def">def</a> <b>throttle_check</b>(request): <br>
+        | .. <a href="retu" class="retu">return</a> Response({'message': 'successful'}) <br>
+
+        <br><br>_______________________________<br>
+        ___# <b><i>urls.py</i></b> <br>---------------add path to view <br>
+        | urlpatterns = [ path('throttle-check', views.throttle_check), <br>
+        <br><br>
+    </p>
+    <hr><br>
+    <p>
+        ___#0116 <b><i>settings.py</i></b> -------------------------add section to rest_framework section<br><br>
+        | <a href="rest" class="rest">REST_FRAMEWORK</a> = { <br>
+        | .. 'DEFAULT_THROTTLE_RATE': { <br>
+        | ...... 'anon': '2/minute', <br>
+        | .. } <br>| } <br>
+
+        <br><br>
+    </p>
+
+
+    <hr><br>
+    <a href="#topg" id="botp">Link to top page</a>
+</body>
+</html>

@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, throttle_classes
 from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle
+
+
 
 
 # views for webpage notes 0115
@@ -30,3 +33,12 @@ def manager_view(request):
         return Response({"message": message1})
     else:
         return Response({"message": message2}, 403)
+
+
+# ex0116 adding throttle method
+
+@api_view()
+@throttle_classes([AnonRateThrottle])
+def throttle_check(request):
+    return Response({"message": "successfully done"})
+
